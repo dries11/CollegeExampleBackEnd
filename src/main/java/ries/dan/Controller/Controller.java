@@ -32,7 +32,7 @@ public class Controller {
     }
 
     @RequestMapping(value = "/remove", method = RequestMethod.POST)
-    public String deleteUser(@RequestParam Integer id){
+    public String deleteUser(@RequestBody Integer id){
         if (studentRepository.exists(id)){
             Student student = studentRepository.findOne(id);
             student.setEnrolled("no");

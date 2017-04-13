@@ -47,7 +47,6 @@ public class Student {
         this.gender = gender;
     }
 
-
     public String getEnrolled() {
         return enrolled;
     }
