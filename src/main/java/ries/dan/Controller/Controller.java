@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ries.dan.Entity.Student;
 import ries.dan.Dao.StudentRepository;
+import ries.dan.Services.StudentServiceImpl;
 
 import java.util.ArrayList;
 
@@ -16,33 +17,27 @@ import java.util.ArrayList;
 public class Controller {
 
     @Autowired
-    private StudentRepository studentRepository;
+    private StudentServiceImpl studentServiceImpl;
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public @ResponseBody String addNewUser(@RequestBody Student student){
-        studentRepository.save(student);
-        return "Saved";
+    public @ResponseBody Object addNewUser(@RequestBody Student student){
+        Student response = this.studentServiceImpl.createNewStudent(student);
+        return response;
     }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET, produces = {"application/json"})
     public ArrayList<Student> getAllUsers(){
-        ArrayList students;
-        students = (ArrayList) studentRepository.findAll();
-        return students;
+        return this.studentServiceImpl.getAllStudents();
     }
 
     @RequestMapping(value = "/remove", method = RequestMethod.POST)
     public String deleteUser(@RequestBody Integer id){
-        if (studentRepository.exists(id)){
-            Student student = studentRepository.findOne(id);
-            student.setEnrolled("no");
-            studentRepository.save(student);
-        }
-        return "Removed";
+        String response = this.studentServiceImpl.studentLeavesSchool(id);
+        return response;
     }
 
     @RequestMapping(value = "/headCount", method = RequestMethod.GET)
     public long getHeadCount(){
-        return studentRepository.count();
+        return this.studentServiceImpl.getHeadCount();
     }
 }
