@@ -40,4 +40,5 @@ public class Controller {
     public long getHeadCount(){
         return this.studentServiceImpl.getHeadCount();
     }
+
 }

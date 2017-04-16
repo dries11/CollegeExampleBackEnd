@@ -17,5 +17,4 @@ public interface StudentService {
 
     Long getHeadCount();
 
-
 }

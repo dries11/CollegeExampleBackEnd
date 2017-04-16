@@ -72,6 +72,7 @@ public class StudentServiceTest {
     public void testGetHeadCount(){
         studentRepository.save(new Student());
         studentRepository.save(new Student());
+        when(studentRepository.count()).thenReturn(2L);
 
         Long result = studentService.getHeadCount();
         Long expected = 2L;

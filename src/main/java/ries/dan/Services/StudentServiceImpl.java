@@ -39,4 +39,5 @@ public class StudentServiceImpl implements StudentService {
     public Long getHeadCount() {
         return this.studentRepository.count();
     }
+
 }
