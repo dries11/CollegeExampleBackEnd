@@ -2,6 +2,7 @@ package ries.dan.Services;
 
 import ries.dan.Entity.Student;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -16,5 +17,7 @@ public interface StudentService {
     String studentLeavesSchool(Integer id);
 
     Long getHeadCount();
+
+    Object getStatistics(ArrayList<Student> students);
 
 }

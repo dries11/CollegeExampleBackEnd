@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ries.dan.Entity.Student;
 import ries.dan.Dao.StudentRepository;
+import ries.dan.Entity.StudentStatistics;
 import ries.dan.Services.StudentServiceImpl;
 
 import java.util.ArrayList;
@@ -39,6 +40,11 @@ public class Controller {
     @RequestMapping(value = "/headCount", method = RequestMethod.GET)
     public long getHeadCount(){
         return this.studentServiceImpl.getHeadCount();
+    }
+
+    @RequestMapping(value = "/stats", method = RequestMethod.GET)
+    public StudentStatistics getStatistics(){
+        return this.studentServiceImpl.getStatistics(getAllUsers());
     }
 
 }

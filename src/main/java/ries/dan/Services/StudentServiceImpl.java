@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ries.dan.Dao.StudentRepository;
 import ries.dan.Entity.Student;
+import ries.dan.Entity.StudentStatistics;
 
 import java.util.ArrayList;
 
@@ -15,6 +16,8 @@ public class StudentServiceImpl implements StudentService {
 
     @Autowired
     private StudentRepository studentRepository;
+
+    private StudentStatistics studentStatistics;
 
     @Override
     public Student createNewStudent(Student student) {
@@ -38,6 +41,13 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Long getHeadCount() {
         return this.studentRepository.count();
+    }
+
+    @Override
+    public StudentStatistics getStatistics(ArrayList<Student> students){
+        studentStatistics = new StudentStatistics();
+        this.studentStatistics.generateStatistics(students);
+        return this.studentStatistics;
     }
 
 }
